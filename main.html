@@ -4,212 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rovin — Certifications</title>
+<link rel="stylesheet" href="src/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --white: #ffffff;
-  --off:   #faf9f7;
-  --ink:   #111010;
-  --muted: #8a8680;
-  --rule:  #e5e2dc;
-  --gold:  #b89a5a;
-}
-
-body {
-  background: var(--white);
-  color: var(--ink);
-  font-family: 'Outfit', sans-serif;
-  min-height: 100vh;
-}
-
-.container {
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0 3rem;
-}
-
-/* ── NAV ── */
-nav {
-  border-bottom: 1px solid var(--rule);
-  padding: 1.4rem 0;
-}
-nav .inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.nav-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--ink);
-  text-decoration: none;
-  letter-spacing: 0.02em;
-}
-.nav-tag {
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--muted);
-  border: 1px solid var(--rule);
-  padding: 5px 14px;
-  border-radius: 2px;
-}
-
-/* ── SECTION LABEL ── */
-.section-label {
-  padding: 2.5rem 0 1.5rem;
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  font-style: italic;
-  color: var(--muted);
-  border-bottom: 1px solid var(--rule);
-  margin-bottom: 1px;
-}
-
-/* ── GRID ── */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1px;
-  /* background: var(--rule); */
-  border: 1px solid var(--rule);
-  margin-bottom: 6rem;
-}
-
-/* ── CARD ── */
-.cert-card {
-  background: var(--white);
-  overflow: hidden;
-  cursor: pointer;
-  transition: background 0.2s;
-  margin: 2px;
-}
-.cert-card:hover { background: var(--off); }
-
-.card-img {
-  width: 100%;
-  aspect-ratio: 4/3;
-  background: var(--off);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-.card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.4s ease;
-}
-.cert-card:hover .card-img img { transform: scale(1.05); }
-
-/* zoom hint on hover */
-.card-img::after {
-  content: '⊕';
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  color: white;
-  background: rgba(0,0,0,0.25);
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-.cert-card:hover .card-img::after { opacity: 1; }
-
-.placeholder {
-  font-size: 3rem;
-  opacity: 0.1;
-  user-select: none;
-}
-
-/* ── MODAL ── */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
-  backdrop-filter: blur(4px);
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.22s;
-}
-.modal-overlay.open {
-  opacity: 1;
-  pointer-events: all;
-}
-.modal-box {
-  position: relative;
-  max-width: 860px;
-  width: 100%;
-  transform: scale(0.95);
-  transition: transform 0.22s;
-}
-.modal-overlay.open .modal-box { transform: scale(1); }
-
-.modal-box img {
-  width: 100%;
-  display: block;
-  border-radius: 4px;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.4);
-}
-.modal-close {
-  position: absolute;
-  top: -14px;
-  right: -14px;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: var(--white);
-  border: 1px solid var(--rule);
-  color: var(--ink);
-  font-size: 18px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.15s;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-}
-.modal-close:hover { background: var(--ink); color: var(--white); }
-
-/* ── FOOTER ── */
-footer {
-  border-top: 1px solid var(--rule);
-  padding: 2rem 0;
-}
-.footer-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.footer-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  font-weight: 700;
-}
-.footer-right {
-  font-size: 12px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-}
-
-@media (max-width: 700px) {
-  .container { padding: 0 1.2rem; }
-  .grid { grid-template-columns: 1fr; }
-}
-</style>
 </head>
 <body>
 
@@ -231,7 +27,7 @@ footer {
 
      <div class="cert-card" onclick="openModal(this)">
       <div class="card-img">
-                <img src="image11.jpg" alt="Certification">
+                <img src="images/image11.jpg" alt="Certification">
       </div>
     </div>
 
@@ -239,7 +35,7 @@ footer {
     <!-- ── CARD: to add a new cert, copy this whole block ── -->
     <div class="cert-card" onclick="openModal(this)">
       <div class="card-img">
-        <img src="image1 (1).jpg" alt="Certification">
+        <img src="images/image1 (1).jpg" alt="Certification">
         <!-- if no image yet, replace the img tag above with:
              <div class="placeholder">📜</div>          -->
       </div>
@@ -249,7 +45,7 @@ footer {
     <!-- ── CARD ── -->
     <div class="cert-card" onclick="openModal(this)">
       <div class="card-img">
-                <img src="image1 (2).jpg" alt="Certification">
+                <img src="images/image1 (2).jpg" alt="Certification">
       </div>
     </div>
     <!-- ── END CARD ── -->
@@ -258,7 +54,7 @@ footer {
     <!-- ── CARD ── -->
     <div class="cert-card" onclick="openModal(this)">
       <div class="card-img">
-           <img src="image3.jpg" alt="Certification">
+           <img src="images/image3.jpg" alt="Certification">
       </div>
     </div>
     <!-- ── END CARD ── -->
@@ -266,7 +62,7 @@ footer {
     <!-- ── CARD ── -->
     <div class="cert-card" onclick="openModal(this)">
       <div class="card-img">
-         <img src="image4.jpg" alt="Certification">
+         <img src="images/image4.jpg" alt="Certification">
       </div>
     </div>
     <!-- ── END CARD ── -->
@@ -274,7 +70,7 @@ footer {
     <!-- ── CARD ── -->
     <div class="cert-card" onclick="openModal(this)">
       <div class="card-img">
-        <img src="image5.jpg" alt="Certification">
+        <img src="images/image5.jpg" alt="Certification">
       </div>
     </div>
     <!-- ── END CARD ── -->
@@ -282,26 +78,26 @@ footer {
     <!-- ── CARD ── -->
     <div class="cert-card" onclick="openModal(this)">
       <div class="card-img">
-         <img src="image6.jpg" alt="Certification">
+         <img src="images/image6.jpg" alt="Certification">
       </div>
     </div>
     <!-- ── END CARD ── -->
 
     <div class="cert-card" onclick="openModal(this)">
       <div class="card-img">
-         <img src="image7.jpg" alt="Certification">
+         <img src="images/image7.jpg" alt="Certification">
       </div>
     </div>
 
       <div class="cert-card" onclick="openModal(this)">
       <div class="card-img">
-         <img src="image8.jpg" alt="Certification">
+         <img src="images/image8.jpg" alt="Certification">
       </div>
     </div>
 
       <div class="cert-card" onclick="openModal(this)">
       <div class="card-img">
-         <img src="image10.jpg" alt="Certification">
+         <img src="images/image10.jpg" alt="Certification">
       </div>
     </div>
   </div>
@@ -312,7 +108,7 @@ footer {
   <div class="container">
     <div class="footer-inner">
       <span class="footer-name">Rovin</span>
-      <span class="footer-right">Software Engineer · University of Sulaimani · CSE</span>
+      <span class="footer-right">Software Engineer · Koya University · DSWE</span>
     </div>
   </div>
 </footer>
@@ -325,25 +121,6 @@ footer {
   </div>
 </div>
 
-<script>
-function openModal(card) {
-  const img = card.querySelector('img');
-  if (!img) return;
-  document.getElementById('modal-img').src = img.src;
-  document.getElementById('modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal(e) {
-  if (e && e.target !== document.getElementById('modal')) return;
-  document.getElementById('modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    document.getElementById('modal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-});
-</script>
+<script src="src/script.js"></script>
 </body>
 </html>
